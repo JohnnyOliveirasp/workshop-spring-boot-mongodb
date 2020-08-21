@@ -1,4 +1,5 @@
 package com.teste.workshopmongodb.config;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.TimeZone;
@@ -12,6 +13,7 @@ import com.teste.workshopmongodb.domain.User;
 import com.teste.workshopmongodb.dto.AuthorDTO;
 import com.teste.workshopmongodb.repository.PostRepository;
 import com.teste.workshopmongodb.repository.UserRepository;
+
 
 
 @Configuration
@@ -42,6 +44,9 @@ public class Instantiation implements CommandLineRunner {
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
 
 		postReposiroty.saveAll(Arrays.asList(post1, post2));
+		
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		userReposiroty.save(maria);
 	}
 
 }
